@@ -7,9 +7,9 @@ const Home = ({}) => {
   useEffect(() => {}, []);
   return (
     <>
-      <section className="container">
-        <MainBox />
+      <section className="wrapper">
         <SideNav />
+        <MainBox />
       </section>
     </>
   );
