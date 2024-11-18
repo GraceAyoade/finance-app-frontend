@@ -1,16 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 body {
-  font-size: 16px;
+  font-size: 14px;
+ 
 }
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
-  border-radius: 10px;
+  padding: 1px;
+  border-radius: 14px;
 }
-p {
-  font-size: 0.9rem;
-}
+/* p {
+  font-size: 0.8rem;
+} */
 p.info {
   font-size: 0.65rem;
   opacity: 0.5;
@@ -50,7 +51,7 @@ p.info {
 .lexend-font {
   font-family: "Lexend", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600; /*100 - 900*/
+  font-weight: 600; 
   font-style: normal;
 }
 
@@ -63,6 +64,7 @@ p.info {
 .poppins-extralight {
   font-family: "Poppins", serif;
   font-weight: 200;
+  font-size: 12px;
   font-style: normal;
 }
 
@@ -76,6 +78,8 @@ p.info {
   font-family: "Poppins", serif;
   font-weight: 400;
   font-style: normal;
+  font-size:small;
+  color: grey
 }
 
 .poppins-medium {
@@ -88,17 +92,19 @@ p.info {
   font-family: "Poppins", serif;
   font-weight: 600;
   font-style: normal;
+  color: rgba(90,94,93,255);
 }
 
 .poppins-bold {
   font-family: "Poppins", serif;
-  font-weight: 700;
+  font-weight: 550;
   font-style: normal;
 }
 
 .poppins-extrabold {
   font-family: "Poppins", serif;
-  font-weight: 800;
+  font-size: 22px;
+  font-weight: 550;
   font-style: normal;
 }
 

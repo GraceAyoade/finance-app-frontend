@@ -3,10 +3,10 @@
   width: 15%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 120px;
-  border: 1px solid pink;
+  padding-right: 14px;
+  padding-top: 10px;
 }
 
 .nav-list-box {
@@ -14,8 +14,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid green;
-  background-color: red;
+  /* border: 1px solid green; */
+  /* background-color: red; */
 }
 
 .nav-title {
@@ -55,7 +55,9 @@
 
 .icon-style:hover {
   cursor: pointer;
-  background-color: rgba(10, 38, 10, 0.9);
+  color: white;
+  /* background-color: rgba(17, 42, 34, 1); */
+  background-color: rgba(1,61,59,255)
 }
 
 .outlined-icon {
@@ -65,5 +67,6 @@
 .promo-box {
   height: 25%;
   width: 80%;
-  border: 1px solid black;
+  color: white;
+  background-color: rgba(1,61,59,255);
 }

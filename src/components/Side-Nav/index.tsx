@@ -14,37 +14,37 @@ function SideNav() {
       <section className="side-nav">
         <div className="nav-list-box">
           <div className="nav-title">
-            <h2>Air Pay</h2>
+            <h4 style={{color:"rgba(1,61,59,255)"}}>Air Save</h4>
           </div>
           <nav className="nav-links">
             <ul className="link-lists">
               <li>
                 <div className="icon-style">
-                  <FiMenu className="outlined-icon" />
+                  <FiMenu />
                   Dashboard
                 </div>
               </li>
               <li>
                 <div className="icon-style">
-                  <FiCreditCard className="outlined-icon" />
+                  <FiCreditCard />
                   My Waitlist
                 </div>
               </li>
               <li>
                 <div className="icon-style">
-                  <FiRefreshCw className="outlined-icon" />
+                  <FiRefreshCw />
                   Transactions
                 </div>
               </li>
               <li>
                 <div className="icon-style">
-                  <FiCodesandbox className="outlined-icon" />
+                  <FiCodesandbox />
                   My Statistics
                 </div>
               </li>
               <li>
                 <div className="icon-style">
-                  <FiSettings className="outlined-icon" />
+                  <FiSettings />
                   My Settings
                 </div>
               </li>
