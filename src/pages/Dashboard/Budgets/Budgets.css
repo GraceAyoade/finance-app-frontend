@@ -1,0 +1,175 @@
+import React, { useState } from 'react';
+import './FinanceTable.css';
+import * as XLSX from 'xlsx';
+
+type Entry = {
+  id: number;
+  type: string;
+  date: string;
+  amount: number;
+  category: string;
+  description: string;
+};
+
+type FinanceTableProps = {
+  initialEntries: Entry[];
+};
+
+const FinanceTable: React.FC<FinanceTableProps> = ({ initialEntries }) => {
+  const [entries, setEntries] = useState<Entry[]>(initialEntries);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newEntry, setNewEntry] = useState<Entry>({
+    id: 0,
+    type: '',
+    date: '',
+    amount: 0,
+    category: '',
+    description: '',
+  });
+
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setNewEntry({ ...newEntry, [name]: name === 'amount' ? parseFloat(value) : value });
+  };
+
+  // Add a new entry
+  const handleAddEntry = () => {
+    if (!newEntry.type || !newEntry.date || !newEntry.amount || !newEntry.category) {
+      alert('Please fill in all required fields!');
+      return;
+    }
+
+    setEntries([...entries, { ...newEntry, id: entries.length + 1 }]);
+    setNewEntry({ id: 0, type: '', date: '', amount: 0, category: '', description: '' });
+    setIsModalOpen(false);
+  };
+
+  // Delete an entry
+  const handleDelete = (id: number) => {
+    setEntries(entries.filter((entry) => entry.id !== id));
+  };
+
+  // Export data to Excel
+  const handleDownloadExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(entries);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Finance Data');
+    XLSX.writeFile(workbook, 'finance_data.xlsx');
+  };
+
+  return (
+    <div className="finance-table-container">
+      <div className="header">
+        <h2>Finance Table</h2>
+        <button className="add-entry-button" onClick={() => setIsModalOpen(true)}>
+          Add Entry
+        </button>
+      </div>
+
+      <table className="finance-table">
+        <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries.length > 0 ? (
+            entries.map((entry, index) => (
+              <tr key={entry.id}>
+                <td>{index + 1}</td>
+                <td>{entry.type}</td>
+                <td>{entry.date}</td>
+                <td>${entry.amount.toFixed(2)}</td>
+                <td>{entry.category}</td>
+                <td>{entry.description}</td>
+                <td>
+                  <button
+                    className="delete-entry-button"
+                    onClick={() => handleDelete(entry.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={7} className="no-entries">
+                No entries found
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      <button className="download-button" onClick={handleDownloadExcel}>
+        Download Excel
+      </button>
+
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Add New Entry</h3>
+            <label>
+              Type:
+              <select name="type" value={newEntry.type} onChange={handleInputChange}>
+                <option value="">Select Type</option>
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+              </select>
+            </label>
+            <label>
+              Date:
+              <input
+                type="date"
+                name="date"
+                value={newEntry.date}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Amount:
+              <input
+                type="number"
+                name="amount"
+                value={newEntry.amount || ''}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Category:
+              <input
+                type="text"
+                name="category"
+                value={newEntry.category}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              Description:
+              <input
+                type="text"
+                name="description"
+                value={newEntry.description}
+                onChange={handleInputChange}
+              />
+            </label>
+            <div className="modal-buttons">
+              <button onClick={handleAddEntry}>Add</button>
+              <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default FinanceTable;

@@ -1,15 +1,19 @@
-import React, { useEffect, useState, useContext } from "react";
-import MainBox from "../../components/Main-Box";
+import React, { useEffect, useContext } from "react";
 import SideNav from "../../components/Side-Nav";
 import "./Home.css";
+import AuthContext from "../../contexts/AuthContext";
+import { Outlet } from "react-router-dom";
 
 const Home = ({}) => {
+  const authData = useContext(AuthContext);
+  console.log(authData);
   useEffect(() => {}, []);
   return (
     <>
       <section className="wrapper">
         <SideNav />
-        <MainBox />
+        {/* <MainBox /> */}
+        <Outlet />
       </section>
     </>
   );

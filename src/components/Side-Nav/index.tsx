@@ -1,4 +1,3 @@
-import react from "react";
 import "./SideNav.css";
 import {
   FiCodesandbox,
@@ -7,6 +6,7 @@ import {
   FiRefreshCw,
   FiSettings,
 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 function SideNav() {
   return (
@@ -14,39 +14,49 @@ function SideNav() {
       <section className="side-nav">
         <div className="nav-list-box">
           <div className="nav-title">
-            <h4 style={{color:"rgba(1,61,59,255)"}}>Air Save</h4>
+            <h4 style={{ color: "rgba(1,61,59,255)" }}>Air Save</h4>
           </div>
           <nav className="nav-links">
             <ul className="link-lists">
               <li>
-                <div className="icon-style">
-                  <FiMenu />
-                  Dashboard
-                </div>
+                <Link to="/dashboard">
+                  <div className="icon-style">
+                    <FiMenu />
+                    Dashboard
+                  </div>
+                </Link>
               </li>
               <li>
-                <div className="icon-style">
-                  <FiCreditCard />
-                  My Waitlist
-                </div>
+                <Link to="/dashboard/entries">
+                  <div className="icon-style">
+                    <FiCreditCard />
+                    My Entries
+                  </div>
+                </Link>
               </li>
               <li>
-                <div className="icon-style">
-                  <FiRefreshCw />
-                  Transactions
-                </div>
+                <Link to="/dashboard/budgets">
+                  <div className="icon-style">
+                    <FiRefreshCw />
+                    My Budgets
+                  </div>
+                </Link>
               </li>
               <li>
-                <div className="icon-style">
-                  <FiCodesandbox />
-                  My Statistics
-                </div>
+                <Link to="/dashboard/reports">
+                  <div className="icon-style">
+                    <FiCodesandbox />
+                    My Reports
+                  </div>
+                </Link>
               </li>
               <li>
-                <div className="icon-style">
-                  <FiSettings />
-                  My Settings
-                </div>
+                <Link to="/dashboard/achievements">
+                  <div className="icon-style">
+                    <FiSettings />
+                    Achievements
+                  </div>
+                </Link>
               </li>
             </ul>
           </nav>

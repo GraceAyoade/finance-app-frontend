@@ -1,4 +1,3 @@
-import react from "react";
 import "./MainBox.css";
 import {
   FiCalendar,
@@ -90,7 +89,9 @@ function MainBox() {
                     </div>
                     <div className="poppins-light" style={{color: "grey"}}>21% of income</div>
                   </div>
-                  <div className="chartjs">CHART from chartJS</div>
+                  <div className="chartjs">
+                  ChartJS  
+                  </div>
                 </div>
                 <div className="transaction-chart-box flex justify-between items-center">
                   <div className="transactions">
@@ -111,7 +112,8 @@ function MainBox() {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+         
           <div className="transactions-analysis flex">
             <div className="transaction-box">
               <div className="transactions-header flex items-center justify-between">
