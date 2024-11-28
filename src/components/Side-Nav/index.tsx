@@ -1,45 +1,70 @@
-import react from "react";
 import "./SideNav.css";
-import { FiCheckCircle, FiCodesandbox, FiCreditCard, FiMenu, FiRefreshCcw, FiRefreshCw, FiRotateCw, FiSettings, FiTablet } from "react-icons/fi";
-
+import {
+  FiCodesandbox,
+  FiCreditCard,
+  FiMenu,
+  FiRefreshCw,
+  FiSettings,
+} from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 function SideNav() {
   return (
     <>
-      <div className="sideNav">
+      <section className="side-nav">
         <div className="nav-list-box">
           <div className="nav-title">
-            <h2>Air Pay</h2>
+            <h4 style={{ color: "rgba(1,61,59,255)" }}>Air Save</h4>
           </div>
-          <div className="nav-list">
-            <ul>
-              <li><div className="icon-style">
-                <FiMenu/>
-                 Dashboard
-                </div></li>
-              <li><div className="icon-style">
-                <FiCreditCard/>
-                My Waitlist
-                </div></li>
-              <li><div className="icon-style">
-                <FiRefreshCw/>
-                Transactions
-                </div></li>
-              <li><div className="icon-style">
-                <FiCodesandbox/>
-                Statistics
-                </div></li>
-              <li><div className="icon-style">
-                <FiSettings/>
-               Settings
-                </div></li>
+          <nav className="nav-links">
+            <ul className="link-lists">
+              <li>
+                <Link to="/dashboard">
+                  <div className="icon-style">
+                    <FiMenu />
+                    Dashboard
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard/entries">
+                  <div className="icon-style">
+                    <FiCreditCard />
+                    My Entries
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard/budgets">
+                  <div className="icon-style">
+                    <FiRefreshCw />
+                    My Budgets
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard/reports">
+                  <div className="icon-style">
+                    <FiCodesandbox />
+                    My Reports
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link to="/logIn">
+                  <div className="icon-style">
+                    <FiSettings />
+                    LogOut
+                  </div>
+                </Link>
+              </li>
             </ul>
-          </div>
+          </nav>
         </div>
         <div className="promo-box">
           <img src="promo-image" alt="" />
         </div>
-      </div>
+      </section>
     </>
   );
 }

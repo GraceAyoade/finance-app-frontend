@@ -1,0 +1,24 @@
+table,
+tr,
+td {
+  padding: 12px;
+  border: 1px solid black;
+}
+
+.add-entry-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 0;
+}
+
+.add-entry {
+  padding: 0.4rem 1.2rem;
+  background: #003d3a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+thead {
+  font-weight: bold;
+}
