@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import BarChart from "../BarChart";
+import PieChart from "../PieChart";
 import "./MainBox.css";
 import {
   FiCalendar,
@@ -7,8 +10,40 @@ import {
   FiTriangle,
   FiUploadCloud,
 } from "react-icons/fi";
+import axios from "axios";
+import { axiosPrivate } from "../../api/axios";
 
 function MainBox() {
+  const [piechartData, setPiechartData] = useState({} as any);
+  const [barChartData, setBarchartData] = useState([{}] as any);
+
+  useEffect(() => {
+    const fetchChartData = async () => {
+      try {
+        const response = await axiosPrivate.get("/reports/summary");
+        setPiechartData(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchChartData();
+  }, []);
+
+  useEffect(()=>{
+    const getchartData = async ()=>{
+try {
+    const response = await axiosPrivate.get("/reports/cash-flow")
+    setBarchartData(response.data.data);
+    console.log(response.data.data)
+  } catch (error) {
+  console.log(error);
+}
+    }
+getchartData()
+  }, [])
+
+
+
   return (
     <>
       <section className="main-box">
@@ -51,7 +86,7 @@ function MainBox() {
               <div className="total-details">
                 <div className="details-header">
                   <div className="text">Balance Details</div>
-                  <div className="text">$ 25,657.00</div>
+                  <div className="text">{`$${piechartData.balance}`}</div>
                   <div className="text">$ 20, 882.9</div>
                 </div>
                 <div className="details-icon flex">
@@ -68,6 +103,7 @@ function MainBox() {
               <div className="account-details flex justify-between items-center">
                 <div className="poppins-regular">SPENDING STATISTICS</div>
                 <div className="icon-style">
+                  0
                   <div
                     className="bg"
                     style={{ padding: "6px", border: "none", color: "#003e3b" }}
@@ -81,39 +117,47 @@ function MainBox() {
                 <div className="transaction-chart-box flex justify-between items-center">
                   <div className="transactions">
                     <div className="t-icon poppins-semibold">
-                      <FiCircle className="circle border-green"/>
+                      <FiCircle className="circle border-green" />
                       Transactions
                     </div>
-                    <div className="poppins-extrabold" style={{ color: "#003e3b" }}>
+                    <div
+                      className="poppins-extrabold"
+                      style={{ color: "#003e3b" }}
+                    >
                       $546
                     </div>
-                    <div className="poppins-light" style={{color: "grey"}}>21% of income</div>
+                    <div className="poppins-light" style={{ color: "grey" }}>
+                      21% of income
+                    </div>
                   </div>
-                  <div className="chartjs">
-                  ChartJS  
-                  </div>
+                  <div className="chartjs"></div>
                 </div>
                 <div className="transaction-chart-box flex justify-between items-center">
                   <div className="transactions">
                     <div className="t-icon poppins-semibold">
-                      <FiCircle className="circle border-yellow"/>
+                      <FiCircle className="circle border-yellow" />
                       Entertainment
                     </div>
-                    <div className="poppins-extrabold" style={{ color: "#003e3b" }}>
+                    <div
+                      className="poppins-extrabold"
+                      style={{ color: "#003e3b" }}
+                    >
                       $245
                     </div>
-                    <div className="poppins-light" style={{color: "grey"}}>11% of income</div>
+                    <div className="poppins-light" style={{ color: "grey" }}>
+                      11% of income
+                    </div>
                   </div>
                   <div className="chartjs">CHART from chartJS</div>
                 </div>
-                <div className="dotted-line flex flex-column justify-center align-center">
+                {/* <div className="dotted-line flex flex-column justify-center align-center">
                   <FiPlus className="icon" />
                   <p style={{ color: "#003e3b" }}>Add</p>
-                </div>
+                </div> */}
               </div>
             </div>
-            </div>
-         
+          </div>
+
           <div className="transactions-analysis flex">
             <div className="transaction-box">
               <div className="transactions-header flex items-center justify-between">
@@ -155,7 +199,30 @@ function MainBox() {
                   <FiTriangle className=" triangle" />
                 </div>
               </div>
-              <div className="Bar-Chart">Insert Bar-Chart from ChartJs</div>
+              <div className="flex">
+                <div className="pie-chart">
+                  <PieChart
+                    data={{
+                      income: piechartData.totalIncome,
+                      expenses: piechartData.totalExpense,
+                    }}
+                    width="250px"
+                    height="250px"
+                  />
+                </div>
+                <div className="Bar-Chart">
+                  <BarChart
+                    data={[
+                      { month: barChartData.month, income: barChartData.income, expenses: barChartData.expenses },
+                      { month: "February", income: 6000, expenses: 4000 },
+                      { month: "March", income: 7000, expenses: 3500 },
+                      { month: "April", income: 6500, expenses: 4500 },
+                      { month: "May", income: 7000, expenses: 5000 },
+                      { month: "June", income: 8000, expenses: 4000 },
+                    ]}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>

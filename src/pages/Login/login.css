@@ -47,12 +47,12 @@
     margin-bottom: 1rem;
   }
   
-  .btns{
+  /* .btns{
     display: flex;
     justify-content: space-between;
-  }
+  } */
   .login-button {
-    width: 40%;
+    width: 300px;
     padding: 0.7rem;
     background: #003d3a;
     border: none;
@@ -63,9 +63,9 @@
   }
   
   .signup-button {
-    width: 40%;
+    width: 300px;
     padding: 0.7rem;
-    background: transparent;
+    /* background: transparent; */
     border: 1px solid #ddd;
     border-radius: 4px;
     color: grey;

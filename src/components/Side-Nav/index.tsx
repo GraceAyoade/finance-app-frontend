@@ -51,10 +51,10 @@ function SideNav() {
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard/achievements">
+                <Link to="/logIn">
                   <div className="icon-style">
                     <FiSettings />
-                    Achievements
+                    LogOut
                   </div>
                 </Link>
               </li>

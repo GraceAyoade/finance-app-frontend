@@ -30,7 +30,7 @@ const SignUpForm: React.FC = () => {
         nationality,
         isChecked,
       });
-      navigate("/logIn"); // Navigate to the dashboard after successful login
+      navigate("/logIn"); 
     } catch (error) {
       console.log(error);
     }
@@ -116,14 +116,13 @@ const SignUpForm: React.FC = () => {
 
           <div className="btns">
             <button
-              // type="submit"
               className="sign-up-button"
               onClick={handleSignup}
             >
-              Sign Up
+              SignUp
             </button>
-            <Link to="/logIn">already have an account? LogIn</Link>
           </div>
+          <Link to="/logIn">already have an account? LogIn</Link>
         </form>
       </div>{" "}
       <div className="background-panel">

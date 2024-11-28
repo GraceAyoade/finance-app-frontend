@@ -67,26 +67,14 @@ const LoginPage: React.FC = () => {
           <button onClick={handleLogin} type="submit" className="login-button">
             Login
           </button>
-          <p>Don't have an account?</p>
-          <Link to="/signup">
+        </div>
+
+        <p className="login-with-text">Dont't have an account?</p>
+        <Link to="/signup">
             <button type="button" className="signup-button">
               SignUp
             </button>
           </Link>
-        </div>
-
-        <p className="login-with-text">Or, login with</p>
-        <div className="social-login">
-          <button type="button" className="social-button facebook">
-            Facebook
-          </button>
-          <button type="button" className="social-button linkedin">
-            LinkedIn
-          </button>
-          <button type="button" className="social-button google">
-            Google
-          </button>
-        </div>
       </form>
     </div>
   );
