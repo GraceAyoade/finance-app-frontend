@@ -29,20 +29,18 @@ function MainBox() {
     fetchChartData();
   }, []);
 
-  useEffect(()=>{
-    const getchartData = async ()=>{
-try {
-    const response = await axiosPrivate.get("/reports/cash-flow")
-    setBarchartData(response.data.data);
-    console.log(response.data.data)
-  } catch (error) {
-  console.log(error);
-}
-    }
-getchartData()
-  }, [])
-
-
+  useEffect(() => {
+    const getchartData = async () => {
+      try {
+        const response = await axiosPrivate.get("/reports/cash-flow");
+        setBarchartData(response.data.data);
+        console.log(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getchartData();
+  }, []);
 
   return (
     <>
@@ -118,17 +116,18 @@ getchartData()
                   <div className="transactions">
                     <div className="t-icon poppins-semibold">
                       <FiCircle className="circle border-green" />
-                      Transactions
+                      Total Income
                     </div>
                     <div
                       className="poppins-extrabold"
                       style={{ color: "#003e3b" }}
                     >
-                      $546
+                      {piechartData.totalIncome}
                     </div>
-                    <div className="poppins-light" style={{ color: "grey" }}>
-                      21% of income
-                    </div>
+                    <div
+                      className="poppins-light"
+                      style={{ color: "grey" }}
+                    ></div>
                   </div>
                   <div className="chartjs"></div>
                 </div>
@@ -136,24 +135,21 @@ getchartData()
                   <div className="transactions">
                     <div className="t-icon poppins-semibold">
                       <FiCircle className="circle border-yellow" />
-                      Entertainment
+                      Total Expense
                     </div>
                     <div
                       className="poppins-extrabold"
                       style={{ color: "#003e3b" }}
                     >
-                      $245
+                      {piechartData.totalExpense}
                     </div>
-                    <div className="poppins-light" style={{ color: "grey" }}>
-                      11% of income
-                    </div>
+                    <div
+                      className="poppins-light"
+                      style={{ color: "grey" }}
+                    ></div>
                   </div>
-                  <div className="chartjs">CHART from chartJS</div>
+                  <div className="chartjs"></div>
                 </div>
-                {/* <div className="dotted-line flex flex-column justify-center align-center">
-                  <FiPlus className="icon" />
-                  <p style={{ color: "#003e3b" }}>Add</p>
-                </div> */}
               </div>
             </div>
           </div>
@@ -199,7 +195,7 @@ getchartData()
                   <FiTriangle className=" triangle" />
                 </div>
               </div>
-              <div className="flex">
+              <div className="flex justify-between">
                 <div className="pie-chart">
                   <PieChart
                     data={{
@@ -212,14 +208,12 @@ getchartData()
                 </div>
                 <div className="Bar-Chart">
                   <BarChart
-                    data={[
-                      { month: barChartData.month, income: barChartData.income, expenses: barChartData.expenses },
-                      { month: "February", income: 6000, expenses: 4000 },
-                      { month: "March", income: 7000, expenses: 3500 },
-                      { month: "April", income: 6500, expenses: 4500 },
-                      { month: "May", income: 7000, expenses: 5000 },
-                      { month: "June", income: 8000, expenses: 4000 },
-                    ]}
+                    data={
+                      barChartData?.map((item: any) => ({
+                        ...item,
+                        expenses: item.month,
+                      })) ?? []
+                    }
                   />
                 </div>
               </div>

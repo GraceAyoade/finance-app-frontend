@@ -14,20 +14,20 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const BarChart: React.FC<IBarChart> = ({ data }) => {
   // Prepare chart data
-  const chartData = {
+  const  chartData = {
     labels: data.map((item: any) => item.month), // Extract months
     datasets: [
       {
         label: "Income",
-        data: data.map((item: any) => item.income), // Extract incomes
-        backgroundColor: "#003d3a", // Green
+        data: data.map((item: any) => item.income), 
+        backgroundColor: "#003d3a", 
         borderColor: "#388e3c",
         borderWidth: 1,
       },
       {
         label: "Expenses",
-        data: data.map((item: any) => item.expenses), // Extract expenses
-        backgroundColor: "#f44336", // Red
+        data: data.map((item: any) => item.expenses), 
+        backgroundColor: "#f44336",
         borderColor: "#d32f2f",
         borderWidth: 1,
       },
@@ -59,7 +59,7 @@ const BarChart: React.FC<IBarChart> = ({ data }) => {
   };
 
   return (
-    <div style={{ width: "350px", margin: "auto" }}>
+    <div style={{ width: "550px", margin: "auto" }}>
       <Bar data={chartData} options={options as any} />
     </div>
   );
